@@ -22,7 +22,7 @@ int main(int argc, char **argv) {
 	}
 
 	/* Open first argument as filename for reading */
-	f = fopen(argv[1], "r");
+	f = fopen(argv[1], "rb");
 	if (!f) {
 		fprintf(stderr, "Failed to open file \"%s\" for input\n", argv[1]);
 		return -1;
@@ -50,14 +50,21 @@ int main(int argc, char **argv) {
 		fclose(g);
 		return -1;
 	}
-	b = calloc(fs, 1);
+	b = calloc(fs + 1, 1);
 	if (!b) {
 		fprintf(stderr, "Error allocating memory\n");
 		fclose(f);
 		fclose(g);
 		return -1;
 	}
-	fread(b, fs, 1, f);
+	if (fread(b, fs, 1, f) != 1)
+	{
+		fprintf(stderr, "Error reading\n");
+		free(b);
+		fclose(f);
+		fclose(g);
+		return -1;
+	}
 	fclose(f);
 
 	/* Run assembler loop */
