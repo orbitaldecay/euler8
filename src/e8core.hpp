@@ -11,58 +11,66 @@
 #include <vector>
 
 typedef std::complex<double> arg_t;
-typedef std::list<arg_t> argstack_t;
-typedef void (*operation_t) (argstack_t*, arg_t, arg_t, arg_t);
+typedef std::vector<arg_t> argstack_t;
+typedef struct operator_args_t_ {
+	argstack_t* a;
+	arg_t z;
+	arg_t t;
+	arg_t s;
+} operator_args_t;	
+
+
+typedef void (*operation_t) (operator_args_t* args);
 typedef std::vector<operation_t> program_t;
 
 int read_nibble(FILE* f);
 void prog_load(FILE* f, program_t* p);
-inline void prog_run(program_t* p, argstack_t* a, arg_t z, arg_t t, arg_t s);
+inline void prog_run(program_t* p, operator_args_t* args);
 
-void op_nop(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_z(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_t(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_s(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_pi(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_i(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_con(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_arg(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_abs(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_add(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_sub(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_mul(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_div(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_dup(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_im(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_re(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_sin(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_cos(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_asin(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_acos(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_nop(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_exp(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_ln(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_pow(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_sqrt(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_cis(argstack_t* a, arg_t z, arg_t t, arg_t s);
+void op_nop(operator_args_t* args);
+void op_z(operator_args_t* args);
+void op_t(operator_args_t* args);
+void op_s(operator_args_t* args);
+void op_pi(operator_args_t* args);
+void op_i(operator_args_t* args);
+void op_con(operator_args_t* args);
+void op_arg(operator_args_t* args);
+void op_abs(operator_args_t* args);
+void op_add(operator_args_t* args);
+void op_sub(operator_args_t* args);
+void op_mul(operator_args_t* args);
+void op_div(operator_args_t* args);
+void op_dup(operator_args_t* args);
+void op_im(operator_args_t* args);
+void op_re(operator_args_t* args);
+void op_sin(operator_args_t* args);
+void op_cos(operator_args_t* args);
+void op_asin(operator_args_t* args);
+void op_acos(operator_args_t* args);
+void op_nop(operator_args_t* args);
+void op_exp(operator_args_t* args);
+void op_ln(operator_args_t* args);
+void op_pow(operator_args_t* args);
+void op_sqrt(operator_args_t* args);
+void op_cis(operator_args_t* args);
 
-void op_immn8(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_immn7(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_immn6(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_immn5(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_immn4(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_immn3(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_immn2(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_immn1(argstack_t* a, arg_t z, arg_t t, arg_t s);
+void op_immn8(operator_args_t* args);
+void op_immn7(operator_args_t* args);
+void op_immn6(operator_args_t* args);
+void op_immn5(operator_args_t* args);
+void op_immn4(operator_args_t* args);
+void op_immn3(operator_args_t* args);
+void op_immn2(operator_args_t* args);
+void op_immn1(operator_args_t* args);
 
-void op_imm0(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_imm1(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_imm2(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_imm3(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_imm4(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_imm5(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_imm6(argstack_t* a, arg_t z, arg_t t, arg_t s);
-void op_imm7(argstack_t* a, arg_t z, arg_t t, arg_t s);
+void op_imm0(operator_args_t* args);
+void op_imm1(operator_args_t* args);
+void op_imm2(operator_args_t* args);
+void op_imm3(operator_args_t* args);
+void op_imm4(operator_args_t* args);
+void op_imm5(operator_args_t* args);
+void op_imm6(operator_args_t* args);
+void op_imm7(operator_args_t* args);
 
 operation_t TRANSLATE[256] = {
 	op_nop,
