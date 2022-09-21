@@ -1,5 +1,5 @@
 #include <iostream>
-#include "e8ops.hpp"
+#include "e8core.hpp"
 #include "e8opcodes.h"
 
 int main(int argc, char** argv)
@@ -69,10 +69,12 @@ int read_nibble(FILE* f)
 	return v;
 }
 
-void prog_run(program_t* p, argstack_t* a, arg_t z, arg_t t, arg_t s)
+inline void prog_run(program_t* p, argstack_t* a, arg_t z, arg_t t, arg_t s)
 {	
-	for (program_t::iterator i = p->begin(); i != p->end(); ++i) {
-		(*i)(a, z, t, s);
+	unsigned int i;
+	for (i = 0; i < p->size(); i++)
+	{
+		(*p)[i](a, z, t, s);
 	}
 	return;
 }

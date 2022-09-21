@@ -3,20 +3,21 @@
 	Bob Forder
 	09/20/22
 */
-#ifndef E8OPS_HPP
-#define E8OPS_HPP
+#ifndef E8CORE_HPP
+#define E8CORE_HPP
 
 #include <list>
 #include <complex>
+#include <vector>
 
 typedef std::complex<double> arg_t;
 typedef std::list<arg_t> argstack_t;
 typedef void (*operation_t) (argstack_t*, arg_t, arg_t, arg_t);
-typedef std::list<operation_t> program_t;
+typedef std::vector<operation_t> program_t;
 
 int read_nibble(FILE* f);
 void prog_load(FILE* f, program_t* p);
-void prog_run(program_t* p, argstack_t* a, arg_t z, arg_t t, arg_t s);
+inline void prog_run(program_t* p, argstack_t* a, arg_t z, arg_t t, arg_t s);
 
 void op_nop(argstack_t* a, arg_t z, arg_t t, arg_t s);
 void op_z(argstack_t* a, arg_t z, arg_t t, arg_t s);
