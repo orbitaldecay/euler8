@@ -1,6 +1,6 @@
 #include <iostream>
 #include <chrono>
-#include "e8core.hpp"
+#include "e8core_private.hpp"
 #include "e8opcodes.h"
 
 #define PIXELS 256 * 256
@@ -36,10 +36,9 @@ int main(int argc, char** argv)
 	args.z = z;
 	args.t = t;
 	args.s = s;
-
+	a.clear();
 
 	/*
-
 	// SPEED TESTING ONLY
 
 	using clock = std::chrono::system_clock;
@@ -55,7 +54,6 @@ int main(int argc, char** argv)
 
 	const sec duration = clock::now() - before;
 	std::cout << "It took " << duration.count() * 1000.0 << "ms to execute the code " << PIXELS << " times." << std::endl;
-
 	*/
 
 	prog_run(&p, &args);
@@ -301,7 +299,7 @@ void op_cis(operator_args_t* args)
 	arg_t i(0,1);
 	arg_t x = a->back();
 	a->pop_back();
-	a->push_back(std::cos(x) + i * std::sin(x));
+	a->push_back(std::exp(i * x));
 }
 
 void op_immn8(operator_args_t* args)
