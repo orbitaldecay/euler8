@@ -8,10 +8,10 @@ ShowInstDetails show
 
 Section
   SetOutPath $INSTDIR
-  File "bin\e8asm.exe"
-  File "bin\euler8.exe"
-  File "bin\SDL2.dll"
-  File "docs\readme.html"
+  File "e8asm.exe"
+  File "euler8.exe"
+  File "SDL2.dll"
+  File "..\docs\readme.html"
   WriteUninstaller $INSTDIR\Uninstall.exe
 SectionEnd
 
