@@ -3,9 +3,9 @@
 #include <SDL2/SDL.h>
 #include "e8core.hpp"
 
-#define WIDTH 128
-#define HEIGHT 128
-#define SCALE 4
+#define WIDTH 256
+#define HEIGHT 256
+#define SCALE 2
 
 int main(int argc, char** argv) {
 	bool quit = false;
@@ -92,9 +92,6 @@ int main(int argc, char** argv) {
                     unsigned char r = ((rg.real() + 1) / 2) * 255;
                     unsigned char g = ((rg.imag() + 1) / 2) * 255;
                     unsigned char b = ((ba.real() + 1) / 2) * 255;
-		    r &= (15 << 4);
-		    g &= (15 << 4);
-		    b &= (15 << 4);
                     int v = b | (g << 8) | (r << 16);
 		    for (int i = 0; i < SCALE; i++)
                         for (int j = 0; j < SCALE; j++)
