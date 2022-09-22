@@ -36,8 +36,7 @@ int main(int argc, char** argv) {
 	args.t.imag(0);
 	args.s.real(0);
 	args.s.imag(0);
-	a.clear();
-
+	args.a->clear();
 
 	SDL_Init(SDL_INIT_VIDEO);
 	SDL_Window* screen = SDL_CreateWindow("Euler8", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH * SCALE, HEIGHT * SCALE, 0);
@@ -48,6 +47,7 @@ int main(int argc, char** argv) {
 	memset(pixels, 0, WIDTH * SCALE * HEIGHT * SCALE * sizeof(Uint32));
         for (int i = 0; i < WIDTH * HEIGHT; i++)
             state[i] = arg_t(0, 0);
+
 	while (!quit)
 	{
 	    args.t.real(SDL_GetTicks() / 1000.0);
@@ -98,6 +98,7 @@ int main(int argc, char** argv) {
                             pixels[(y * SCALE + i) * WIDTH * SCALE + (x * SCALE + j)] = v;
 	        }
             }
+
 	    SDL_UpdateTexture(texture, NULL, pixels, WIDTH * SCALE * sizeof(Uint32));
 	    while (SDL_PollEvent(&event) != 0)
 	    {
