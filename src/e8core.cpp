@@ -3,65 +3,6 @@
 #include "e8core_private.hpp"
 #include "e8opcodes.h"
 
-#define PIXELS 256 * 256
-
-
-int main(int argc, char** argv)
-{
-	program_t p;
-	argstack_t a;
-	operator_args_t args;
-
-	arg_t z(1, 3);
-	arg_t t(2, 0);
-	arg_t s(0, 0);
-	FILE* f;
-
-	if (argc != 2)
-	{
-		fprintf(stderr, "Usage: e8ops cartfile\n");
-		return -1;
-	}
-	f = fopen(argv[1], "rb");
-	if (!f)
-	{
-		fprintf(stderr, "Unable to open \"%s\"\n", argv[1]);
-		return -1;
-	}
-	prog_load(f, &p);
-
-	fclose(f);
-
-	args.a = &a;
-	args.z = z;
-	args.t = t;
-	args.s = s;
-	a.clear();
-
-	/*
-	// SPEED TESTING ONLY
-
-	using clock = std::chrono::system_clock;
-	using sec = std::chrono::duration<double>;
-
-	const auto before = clock::now();
-
-	for (int i = 0; i < PIXELS; i++)
-	{
-		prog_run(&p, &args);
-		a.clear();
-	}
-
-	const sec duration = clock::now() - before;
-	std::cout << "It took " << duration.count() * 1000.0 << "ms to execute the code " << PIXELS << " times." << std::endl;
-	*/
-
-	prog_run(&p, &args);
-	z = a.back();
-	a.pop_back();
-	std::cout << z;
-}
-
 void prog_load(FILE* f, program_t* p)
 {
 	int v, t;
@@ -99,7 +40,7 @@ int read_nibble(FILE* f)
 	return v;
 }
 
-inline void prog_run(program_t* p, operator_args_t* args)
+void prog_run(program_t* p, operator_args_t* args)
 {	
 	unsigned int i;
 	unsigned int ps = p->size();

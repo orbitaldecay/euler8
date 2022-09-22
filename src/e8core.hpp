@@ -39,6 +39,6 @@ typedef void (*operation_t) (operator_args_t* args);
 typedef std::vector<operation_t> program_t;
 
 void prog_load(FILE* f, program_t* p);
-inline void prog_run(program_t* p, operator_args_t* args);
+void prog_run(program_t* p, operator_args_t* args);
 
 #endif
