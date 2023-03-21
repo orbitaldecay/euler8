@@ -7,7 +7,7 @@
 
 <div id="preface">
 <h2>Preface</h2>
-<p>This is the documentation for Euler8 0.1. This software was designed and developed by Bob Forder (<a href="mailto:bob@forder.cc">bob@forder.cc</a>) for the <a href="https://itch.io/jam/make-a-console-jam">Make a Console Jam</a> during September of 2022. It is free software under the zlib license. All documentation and source code was written in Notepad. The virtual machine was compiled using Emscripten and the assembler was compiled using MinGW.</p>
+<p>This is the documentation for Euler8 0.1. This software was designed and developed by Bob Forder (<a href="mailto:bob@forder.cc">bob@forder.cc</a>) for the <a href="https://itch.io/jam/make-a-console-jam">Make a Console Jam</a> during September of 2022. It is free software under the zlib license. All documentation and source code was written in Notepad.</p>
 </div><hr>
 
 <div id="toc">
