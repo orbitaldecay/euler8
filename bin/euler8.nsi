@@ -2,7 +2,7 @@
 !include WinCore.nsh
 !include Integration.nsh
 
-Outfile "Euler8_0.01_setup_x86-64.exe"
+Outfile "Euler8_0.1_setup_x86-64.exe"
 InstallDir $PROGRAMFILES64\Euler8
 ShowInstDetails show
 
