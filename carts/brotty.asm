@@ -1,0 +1,1 @@
+s s mul z add dup dup nop
