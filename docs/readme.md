@@ -1,29 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<title>Euler8 Documentation</title>
-<style>
-body {
-	font-family: monospace;
-}
-table {
-	width: 100%;
-	border-spacing: 0px;
-
-}
-td {
-	width: 25%;
-	border-bottom: 1px solid black;
-}
-a {
-	color: #4444ff;
-}
-div {
-	padding: 1em;
-}
-</style>
-</head>
 <body>
 <div id="title">
 <h1>Euler8 Documentation</h1>
